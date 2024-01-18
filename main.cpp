@@ -27,7 +27,7 @@ struct ProblemN2 : public TestFramework::BasicProblem {
 };
 
 int MinCostHelper(const std::vector<int> &sale, const std::vector<int> &before,
-                  const std::vector<int> &after, int k) {
+                  const std::vector<int> &after, int k, int id) {
   size_t giftCount = sale.size();
   bool areArraySizesEqual =
       (giftCount == before.size()) && (giftCount == after.size());
@@ -42,7 +42,7 @@ int MinCostHelper(const std::vector<int> &sale, const std::vector<int> &before,
     giftPrices[i] = {sale[i], before[i], after[i]};
   }
 
-  return MinCost(giftPrices, k);
+  return MinCost(giftPrices, k, id);
 }
 
 int main(int argc, char *argv[]) {
@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
 
   for (auto &theProblem : problems) {
     theProblem.student_answer = MinCostHelper(
-        theProblem.sale, theProblem.before, theProblem.after, theProblem.k);
+        theProblem.sale, theProblem.before, theProblem.after, theProblem.k, theProblem.id);
   }
 
   ProcessResults(problems, header);

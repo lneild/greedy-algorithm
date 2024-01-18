@@ -17,6 +17,7 @@
 ///////////////////////////////////////////////
 
 //required libraries
+#include "quick_sort.h"
 #include <string>
 #include <vector>
 #include <array>
@@ -39,9 +40,24 @@ std::string DefaultProblemSet()
     return "small";
 }
 
-int MinCost(std::vector<Price>& giftPrices, int k)
+// void print_prices(std::vector<Price>& prices)
+// {
+//    for (size_t i = 0; i < prices.size(); i++)
+//    {
+//       printf("Price #%zu:\n", i + 1);
+//       printf("Sale: %d\n", prices[i].sale);
+//       printf("After: %d\n", prices[i].after);
+//       printf("Before: %d\n", prices[i].before);
+//       // add print statements for additional fields
+//       printf("Save: %d\n", prices[i].save);
+//       printf("Best non-sale price: %d\n", prices[i].bestNonSale);
+//       printf("\n");
+//    }
+// }
+
+int MinCost(std::vector<Price>& giftPrices, int k, int id)
 {
-   for (Price p : giftPrices) {
+   for (Price& p : giftPrices) {
       p.bestNonSale = std::min(p.before, p.after);
       p.save = std::min(p.before-p.sale, p.after-p.sale);
    }
@@ -49,13 +65,12 @@ int MinCost(std::vector<Price>& giftPrices, int k)
    // sort by the savings:
    std::sort(giftPrices.begin(), giftPrices.end(), [](const Price &elem1, const Price &elem2) {
         return elem1.save > elem2.save;
-    });
-
+   });
    int spent=0;
    int i=0;
 
-   for (Price p: giftPrices){
-      if (p.bestNonSale<p.sale) {
+   for (Price& p: giftPrices){
+      if (p.bestNonSale <= p.sale) {
          spent+=p.bestNonSale;
       }
       else{
