@@ -17,7 +17,6 @@
 ///////////////////////////////////////////////
 
 //required libraries
-#include "quick_sort.h"
 #include <string>
 #include <vector>
 #include <array>
@@ -39,21 +38,6 @@ std::string DefaultProblemSet()
 {
     return "small";
 }
-
-// void print_prices(std::vector<Price>& prices)
-// {
-//    for (size_t i = 0; i < prices.size(); i++)
-//    {
-//       printf("Price #%zu:\n", i + 1);
-//       printf("Sale: %d\n", prices[i].sale);
-//       printf("After: %d\n", prices[i].after);
-//       printf("Before: %d\n", prices[i].before);
-//       // add print statements for additional fields
-//       printf("Save: %d\n", prices[i].save);
-//       printf("Best non-sale price: %d\n", prices[i].bestNonSale);
-//       printf("\n");
-//    }
-// }
 
 int MinCost(std::vector<Price>& giftPrices, int k, int id)
 {
